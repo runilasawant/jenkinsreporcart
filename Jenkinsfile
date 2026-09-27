@@ -1,31 +1,31 @@
 pipeline {
-    agent { 
-        label 'node'
-    }
-    tools {
+ agent any
+    tools
+    {
         nodejs 'npm'
     }
-    environment {
-        Name = "Mantasha"
-    }
-
+    environment{
+        Name= "Rutvik"
+}
     stages {
-        stage('clone') {
+        stage('Clone') {
             steps {
+            git branch: 'main', url: 'https://github.com/runilasawant/jenkinsreporcart.git'
                 echo 'Hello World'
-                git branch: 'main', url: 'https://github.com/mantu0tech/weather_app_node_js.git'
             }
         }
-         stage('build') {
+           stage('build') {
             steps {
                 echo 'Hello World'
-                sh 'npm i'
+                sh 'npm install'
+                
             }
         }
-         stage('deplyo') {
+           stage('deploy') {
             steps {
                 echo 'Hello World'
-                sh 'npm start'
+                sh 'npm run build'
+                
             }
         }
     }
